@@ -39,33 +39,33 @@
 class CData
 {
 private:
-	U8   *m_Data;
-	U32  m_Len;
+  U8   *m_Data;
+  U32  m_Len;
 
 public:
 
-	CData(void): m_Data(NULL), m_Len(0)
-	{
-	}
+  CData(void): m_Data(NULL), m_Len(0)
+  {
+  }
 
-	CData(U8 * data, U32 len);
-	CData(CData &other);
+  CData(U8 * data, U32 len);
+  CData(CData &other);
 
-	~CData(void)
-	{
-		FreeData();
-	}
+  ~CData(void)
+  {
+    FreeData();
+  }
 
-	const U8 * GetData(void) const { return m_Data; }
-	U32 GetLen(void) const { return m_Len; }
+  const U8 * GetData(void) const { return m_Data; }
+  U32 GetLen(void) const { return m_Len; }
 
-	void FreeData(void);
+  void FreeData(void);
 
-	void SetData(CData * data);
-	void SetData(const U8 * data, U32 len);
+  void SetData(CData * data);
+  void SetData(const U8 * data, U32 len);
 
-	void XorData(CData * data);
-	void XorData(const U8 * data, U32 len);
+  void XorData(CData * data);
+  void XorData(const U8 * data, U32 len);
 };
 
 #endif /* __RAPTOR_DATA_H__ */

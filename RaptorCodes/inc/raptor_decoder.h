@@ -42,34 +42,34 @@
 class CDecoder
 {
 private:
-	U8** m_A;
+  U8** m_A;
 
-	U16* m_Degree; //record the number of 1s in each row
+  U16* m_Degree; //record the number of 1s in each row
 
-	U32  m_K;
-	U32  m_S;
-	U32  m_H;
-	U32  m_Hp;
-	U32  m_L;
-	U32  m_Lp;
-	U32  m_N;
-	U32  m_lossNum;
-	std::vector<U32> m_ESI;
+  U32  m_K;
+  U32  m_S;
+  U32  m_H;
+  U32  m_Hp;
+  U32  m_L;
+  U32  m_Lp;
+  U32  m_N;
+  U32  m_lossNum;
+  std::vector<U32> m_ESI;
 
-	void FillAMatrix(void);
-	void GetAMatrix(U8** A,U32 M,U32 L);
-	void ReleaseAMatrix(void);
+  void FillAMatrix(void);
+  void GetAMatrix(U8** A,U32 M,U32 L);
+  void ReleaseAMatrix(void);
 
-	void SolveRevisedGauss(U32 M, U32 L, U8** A, CData** C, CData** D);
+  void SolveRevisedGauss(U32 M, U32 L, U8** A, CData** C, CData** D);
 
-	std::queue<CData* > GetIntermediateSymbols(std::queue<CData* > encoded);
+  std::queue<CData* > GetIntermediateSymbols(std::queue<CData* > encoded);
 
 public:
 
-	CDecoder(U32 K, U32 N, U32 lossNum, std::vector<U32> ESI);
-	~CDecoder(void);
+  CDecoder(U32 K, U32 N, U32 lossNum, std::vector<U32> ESI);
+  ~CDecoder(void);
 
-	std::queue<CData* > Decode(std::queue<CData* > encoded);	
+  std::queue<CData* > Decode(std::queue<CData* > encoded);  
 };
 
 #endif /* __RAPTOR_DECODER_H__ */

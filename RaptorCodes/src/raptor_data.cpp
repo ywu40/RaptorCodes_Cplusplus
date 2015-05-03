@@ -34,61 +34,61 @@
 
 CData::CData(U8 * data, U32 len): m_Data(NULL), m_Len(0)
 {
-	SetData(data, len);
+  SetData(data, len);
 }
 
 CData::CData(CData &other): m_Data(NULL), m_Len(0)
 {
-	SetData(other.m_Data, other.m_Len);
+  SetData(other.m_Data, other.m_Len);
 }
 
 void CData::FreeData(void)
 {
-	if (m_Data)
-	{
-		delete[] m_Data;
-		m_Data = NULL;
-	}	
+  if (m_Data)
+  {
+    delete[] m_Data;
+    m_Data = NULL;
+  } 
 }
 
 void CData::SetData(CData* data)
 {
-	return SetData(data->GetData(), data->GetLen());
+  return SetData(data->GetData(), data->GetLen());
 }
 
 void CData::SetData(const U8* data, U32 len)
 {
-	FreeData();
-	if (len > 0 && data)
-	{
-		m_Data = new U8[len];
-		memcpy(m_Data, data, len);
-		m_Len = len;
-	}
+  FreeData();
+  if (len > 0 && data)
+  {
+    m_Data = new U8[len];
+    memcpy(m_Data, data, len);
+    m_Len = len;
+  }
 }
 
 void CData::XorData(CData* data)
 {
-	return XorData(data->GetData(), data->GetLen());
+  return XorData(data->GetData(), data->GetLen());
 }
 
 void CData::XorData(const U8* data, U32 len)
 {
-	if (len > m_Len)
-	{
-		U8* tmp = new U8[len];
-		memset(tmp, 0, len);
-		if (m_Len > 0)
-		{
-			memcpy(tmp, m_Data, m_Len);
-		}
-		FreeData();
-		m_Data = tmp;
-		m_Len = len;
-	}
-	for (U32 i = 0; i < m_Len; ++i)
-	{
-		m_Data[i] ^= data[i];
-	}
+  if (len > m_Len)
+  {
+    U8* tmp = new U8[len];
+    memset(tmp, 0, len);
+    if (m_Len > 0)
+    {
+      memcpy(tmp, m_Data, m_Len);
+    }
+    FreeData();
+    m_Data = tmp;
+    m_Len = len;
+  }
+  for (U32 i = 0; i < m_Len; ++i)
+  {
+    m_Data[i] ^= data[i];
+  }
 }
 

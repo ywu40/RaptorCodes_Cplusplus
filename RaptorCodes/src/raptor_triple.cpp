@@ -42,19 +42,19 @@
 /* See RFC 5053:5.4.4.4 */
 CTriple CTripleGenerator::Trip(U32 K, U32 X)
 {
-	CTriple res;
-	if (m_K != K)
-	{
-		m_K = K;
-		m_L = GetLPrim(K);
-	}
+  CTriple res;
+  if (m_K != K)
+  {
+    m_K = K;
+    m_L = GetLPrim(K);
+  }
 
-	U32 A = (53591 + J[K] * 997) % m_Q;
-	U32 B = 10267 * (J[K] + 1) % m_Q;
-	U32 Y = (B + X * A) % m_Q;
-	U32 v = Rand(Y, 0, (U32)pow(2.0f, 20.0f));
-	res.d = Deg(v);
-	res.a = 1 + Rand(Y, 1, m_L - 1);
-	res.b = Rand(Y, 2, m_L);
-	return res;
+  U32 A = (53591 + J[K] * 997) % m_Q;
+  U32 B = 10267 * (J[K] + 1) % m_Q;
+  U32 Y = (B + X * A) % m_Q;
+  U32 v = Rand(Y, 0, (U32)pow(2.0f, 20.0f));
+  res.d = Deg(v);
+  res.a = 1 + Rand(Y, 1, m_L - 1);
+  res.b = Rand(Y, 2, m_L);
+  return res;
 }

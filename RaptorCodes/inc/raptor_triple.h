@@ -37,23 +37,23 @@
 
 struct CTriple
 {
-	U32 d;
-	U32 a;
-	U32 b;		
+  U32 d;
+  U32 a;
+  U32 b;    
 };
 
 class CTripleGenerator
 {
 private:
 
-	static const U32 m_Q = 65521;
-	U32 m_K;
-	U32 m_L;
+  static const U32 m_Q = 65521;
+  U32 m_K;
+  U32 m_L;
 
 public:
 
-	/* See RFC 5053:5.4.4.4 */
-	CTriple Trip(U32 K, U32 X);
+  /* See RFC 5053:5.4.4.4 */
+  CTriple Trip(U32 K, U32 X);
 };
 
 #endif /* __RAPTOR_TRIPLE_H__ */

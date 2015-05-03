@@ -40,30 +40,30 @@ class CXorPos
 {
 private:
 
-	U32  m_orig;
-	U32  m_dest;
+  U32  m_orig;
+  U32  m_dest;
 
 public:
 
-	CXorPos(U32 orig, U32 dest): m_orig(orig), m_dest(dest)
-	{
-	}
+  CXorPos(U32 orig, U32 dest): m_orig(orig), m_dest(dest)
+  {
+  }
 
-	CXorPos(const CXorPos& other)
-	{
-		m_orig = other.m_orig;
-		m_dest = other.m_dest;
-	}
+  CXorPos(const CXorPos& other)
+  {
+    m_orig = other.m_orig;
+    m_dest = other.m_dest;
+  }
 
-	U32 getOrigPos(void)
-	{
-		return m_orig;
-	}
+  U32 getOrigPos(void)
+  {
+    return m_orig;
+  }
 
-	U32 getDestPos(void)
-	{
-		return m_dest;
-	}
+  U32 getDestPos(void)
+  {
+    return m_dest;
+  }
 };
 
 #endif /* __RAPTOR_XOR_H__ */

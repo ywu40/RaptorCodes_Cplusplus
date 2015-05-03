@@ -42,44 +42,44 @@
 class CEncoder
 {
 private:
-	U32* m_Mseq; // m sequence defined in RFC 5053:5.4.2.3
-	CTriple* m_Triples;	
-	CData* m_Intermediate;
-	CData* m_Source;
+  U32* m_Mseq; // m sequence defined in RFC 5053:5.4.2.3
+  CTriple* m_Triples; 
+  CData* m_Intermediate;
+  CData* m_Source;
 
-	U8** m_A;
-	U32* m_c;
-	U32* m_d;
-	std::vector<CXorPos> m_xorPos;
-	
-	U32 m_K;
-	U32 m_S;
-	U32 m_H;
-	U32 m_Hp;
-	U32 m_L;
-	U32 m_Lp;
-	U32 m_N;
-	U32 m_Count;
-	
+  U8** m_A;
+  U32* m_c;
+  U32* m_d;
+  std::vector<CXorPos> m_xorPos;
+  
+  U32 m_K;
+  U32 m_S;
+  U32 m_H;
+  U32 m_Hp;
+  U32 m_L;
+  U32 m_Lp;
+  U32 m_N;
+  U32 m_Count;
+  
 public:
-	void CreateIS(CData* source);
+  void CreateIS(CData* source);
 
 
 private:
-	void CreateMSeq(void);
-	void LTEnc(U32 k, CData* inter_sym, CTriple* triples);
+  void CreateMSeq(void);
+  void LTEnc(U32 k, CData* inter_sym, CTriple* triples);
 
-	void FillA_GMatrix(void);
-	void ReleaseA_GMatrix(void);
+  void FillA_GMatrix(void);
+  void ReleaseA_GMatrix(void);
 
-	void SolveIntermediateSym(U32 K, U32 L, U8** A, U32* c, U32* d);
+  void SolveIntermediateSym(U32 K, U32 L, U8** A, U32* c, U32* d);
 
 public:
-	CEncoder(U32 K, U32 lossNum);
-	~CEncoder(void);
-	void AddData(CData* source);
-	std::queue<CData* > getEncodedData(void);
-	std::queue<CData* > encoded_sym;
+  CEncoder(U32 K, U32 lossNum);
+  ~CEncoder(void);
+  void AddData(CData* source);
+  std::queue<CData* > getEncodedData(void);
+  std::queue<CData* > encoded_sym;
 };
 
 #endif /* __RAPTOR_ENCODER_H__ */
