@@ -293,7 +293,7 @@ queue<CData* > CDecoder::GetIntermediateSymbols(queue<CData* > encoded)
 #endif
 
   //Get C, we have to solve A*C=D with gauss method. 
-  SolveRevisedGauss(M, m_L, A, C, D);
+  auto decodedSymbols = SolveRevisedGauss(M, m_L, A, C, D);
 
   //free resources
 #if 0
@@ -334,10 +334,10 @@ queue<CData* > CDecoder::GetIntermediateSymbols(queue<CData* > encoded)
   D = NULL;
 #endif
   //free encoded symbols and intermediate symbols
-  return encoded;
+  return decodedSymbols;
 }
 
-void CDecoder::SolveRevisedGauss(U32 M, U32 L, U8** A, CData** C, CData** D)
+queue<CData* > CDecoder::SolveRevisedGauss(U32 M, U32 L, U8** A, CData** C, CData** D)
 {
   //init sequence
   //See reference document Page 25
@@ -494,7 +494,7 @@ void CDecoder::SolveRevisedGauss(U32 M, U32 L, U8** A, CData** C, CData** D)
           delete[] d;
           d = NULL;
           printf("First Phase Decoding Fail! Zero row Num: %d, M=%d, L=%d\n", zerosRowNum, M, L);
-          return;
+          return queue<CData* >();
         }
 
         U32 lastNonZeroRow = M - zerosRowNum - 1;
@@ -713,7 +713,7 @@ void CDecoder::SolveRevisedGauss(U32 M, U32 L, U8** A, CData** C, CData** D)
     if (rowIndex == M)
     {
       printf("Second Phase Decoding Fail!");
-      return;
+      return queue<CData* >();
     }
 #endif
 
@@ -847,6 +847,7 @@ void CDecoder::SolveRevisedGauss(U32 M, U32 L, U8** A, CData** C, CData** D)
 #ifdef TEST_PURPOSE
   U32 ltDec1 = GetTickCount();
 #endif
+  queue<CData* > rtn;
 
   CTripleGenerator triple_gen;
   for (U32 i = 0; i < m_K; ++i)
@@ -885,7 +886,8 @@ void CDecoder::SolveRevisedGauss(U32 M, U32 L, U8** A, CData** C, CData** D)
       }
     }
 #endif
-    delete result;
+    //delete result;
+    rtn.push(result);
   }
 #ifdef TEST_PURPOSE
   U32 ltDec2 = GetTickCount() - ltDec1;
@@ -899,6 +901,7 @@ void CDecoder::SolveRevisedGauss(U32 M, U32 L, U8** A, CData** C, CData** D)
   //free resources
   delete[] c;
   delete[] d;
+  return rtn;
 }
 
 queue<CData* > CDecoder::Decode(queue<CData* > encoded)
