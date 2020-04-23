@@ -60,7 +60,7 @@ private:
   void GetAMatrix(U8** A,U32 M,U32 L);
   void ReleaseAMatrix(void);
 
-  void SolveRevisedGauss(U32 M, U32 L, U8** A, CData** C, CData** D);
+  std::queue<CData* > SolveRevisedGauss(U32 M, U32 L, U8** A, CData** C, CData** D);
 
   std::queue<CData* > GetIntermediateSymbols(std::queue<CData* > encoded);
 
